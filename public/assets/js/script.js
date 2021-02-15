@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         name: document.getElementById('ca').value.trim(),
       };
 
-      // Send POST request to create a new quote
+ 
       fetch('/api/burgers', {
         method: 'POST',
         headers: {
@@ -30,14 +30,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
           'Content-Type': 'application/json',
         },
 
-        // make sure to serialize the JSON body
-        body: JSON.stringify(newCat),
+
+        body: JSON.stringify(newBurger),
       }).then(() => {
-        // Empty the form
+  
         document.getElementById('ca').value = '';
 
-        // Reload the page so the user can see the new quote
-        console.log('Created a new cat!');
+        console.log('Created a new Burger!');
         location.reload();
       });
     });

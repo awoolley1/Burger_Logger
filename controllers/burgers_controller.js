@@ -1,4 +1,5 @@
 const express = require('express');
+const burgers = require('../models/burger.js');
 
 const router = express.Router();
 
@@ -15,12 +16,11 @@ router.get('/', (req, res) => {
   });
 });
 
-// router.post('/api/cats', (req, res) => {
-//   cat.create(['name', 'sleepy'], [req.body.name, req.body.sleepy], (result) => {
-//     // Send back the ID of the new quote
-//     res.json({ id: result.insertId });
-//   });
-// });
+router.post('/api/burgers', (req, res) => {
+  burgers.create(['name'], [req.body.name], (result) => {
+    res.json({ id: result.insertId });
+  });
+});
 
 // router.put('/api/cats/:id', (req, res) => {
 //   const condition = `id = ${req.params.id}`;
