@@ -45,11 +45,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     changeToDevouredBtn.forEach((button) => {
       button.addEventListener('click', (e) => {
         const id = e.target.getAttribute('data-id');
-        const newDevour = e.target.getAttribute('data-devour');
+        var devourState = e.target.getAttribute('data-devoured');
 
-        const newDevourState = {
-          devoured: newDevour,
-        };
+        const newDevourState = !devourState;
 
         fetch(`/api/burgers/${id}`, {
           method: 'PUT',
@@ -62,7 +60,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }).then((response) => {
 
           if (response.ok) {
-            console.log(`changed devoured to: ${newDevour}`);
+            console.log(`changed devoured to: ${newDevourState}`);
             location.reload('/');
           } else {
             alert('something went wrong!');
