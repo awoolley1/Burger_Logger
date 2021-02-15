@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       e.preventDefault();
 
       const newBurger = {
-        name: document.getElementById('ca').value.trim(),
+        burger_name: document.getElementById('ca').value.trim(),
       };
 
  
