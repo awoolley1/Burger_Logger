@@ -46,8 +46,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
       button.addEventListener('click', (e) => {
         const id = e.target.getAttribute('data-id');
         var devourState = e.target.getAttribute('data-devoured');
+        console.log(devourState)
 
-        const newDevourState = !devourState;
+        const newDevourState = true;
+        console.log(newDevourState)
 
         fetch(`/api/burgers/${id}`, {
           method: 'PUT',
@@ -56,7 +58,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'Content-Type': 'application/json',
           },
 
-          body: JSON.stringify(newDevourState),
+          body: JSON.stringify({devoured: newDevourState}),
         }).then((response) => {
 
           if (response.ok) {
