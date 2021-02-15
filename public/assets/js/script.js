@@ -7,10 +7,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
       console.info("DOM loaded");
     } 
 
-  // UPDATE
-   // const changeToDevouredBtn = document.querySelectorAll(".change-devoured"); 
-
-
   // CREATE
   const createBurgerBtn = document.getElementById('create-form');
 
@@ -38,6 +34,40 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
         console.log('Created a new Burger!');
         location.reload();
+      });
+    });
+  }
+
+   // UPDATE
+   const changeToDevouredBtn = document.querySelectorAll(".change-devoured"); 
+
+   if (changeToDevouredBtn) {
+    changeToDevouredBtn.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const id = e.target.getAttribute('data-id');
+        const newDevour = e.target.getAttribute('data-devour');
+
+        const newDevourState = {
+          devoured: newDevour,
+        };
+
+        fetch(`/api/burgers/${id}`, {
+          method: 'PUT',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+
+          body: JSON.stringify(newDevourState),
+        }).then((response) => {
+
+          if (response.ok) {
+            console.log(`changed devoured to: ${newDevour}`);
+            location.reload('/');
+          } else {
+            alert('something went wrong!');
+          }
+        });
       });
     });
   }
